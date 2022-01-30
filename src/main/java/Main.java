@@ -113,11 +113,11 @@ public class Main {
             people1.forEach(System.out::println);
         });
 
+        System.out.println("\nGrouping Female and looking for the oldest one");
         Optional<String> oldestFemaleAge = people.stream()
                 .filter(person -> person.getGender().equals(Gender.FEMALE))
                 .max(Comparator.comparing(Person::getAge))
                 .map(Person::getName);
-
         oldestFemaleAge.ifPresent(System.out::println);
     }
 
