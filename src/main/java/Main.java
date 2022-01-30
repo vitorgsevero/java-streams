@@ -68,12 +68,18 @@ public class Main {
 
         sortedByNameAsc.forEach(System.out::println);
 
-        // All match
+        // ALL MATCH
+        System.out.println("\nAll Match person age should be true with greater than 6");
         boolean allMatch = people.stream()
-                .allMatch(person -> person.getAge() > 8);
+                .allMatch(person -> person.getAge() > 6); //Everybody in this list has an age bigger than 6 years, so the result will be true
+        System.out.println(allMatch);
 
-//    System.out.println(allMatch);
-        // Any match
+        System.out.println("\nAll Match person name should be true with starts with 'A' letter");
+        boolean allMatchNameStartsWithLetterA = people.stream()
+                .allMatch(person -> person.getName().startsWith("A")); //Not everybody in this list has a name that starts with "A" letter, so the result with be false
+        System.out.println(allMatchNameStartsWithLetterA);
+
+        // ANY MATCH
         boolean anyMatch = people.stream()
                 .anyMatch(person -> person.getAge() > 121);
 
