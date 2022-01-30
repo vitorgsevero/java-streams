@@ -8,40 +8,65 @@ import java.util.stream.Collectors;
 public class Main {
 
     public static void main(String[] args) {
+
         List<Person> people = getPeople();
 
         // Imperative approach ❌
 
-    /*
+        System.out.println("\nImperative approach\n");
 
-    List<Person> females = new ArrayList<>();
+        List<Person> females = new ArrayList<>();
 
-    for (Person person : people) {
+        for (Person person : people) {
 
-      if (person.getGender().equals(Gender.FEMALE)) {
-        females.add(person);
-      }
-    }
+            if (person.getGender().equals(Gender.FEMALE)) {
+                females.add(person);
+            }
+        }
 
-    females.forEach(System.out::println);
-
-    */
+        females.forEach(System.out::println);
 
         // Declarative approach ✅
 
-        // Filter
-        List<Person> females = people.stream()
-                .filter(person -> person.getGender().equals(Gender.FEMALE))
-                .collect(Collectors.toList());
+        System.out.println("\nDeclarative approach");
 
-//    females.forEach(System.out::println);
+        // FILTER
+        System.out.println("\nFiltering by Male Gender");
+        List<Person> femalesStream = people.stream()
+                .filter(person -> person.getGender().equals(Gender.MALE))
+                .collect(Collectors.toList()); //it saves the result of the search into a new list = females;
 
-        // Sort
-        List<Person> sorted = people.stream()
+        femalesStream.forEach(System.out::println);
+
+
+        // SORT
+        System.out.println("\nSorting by Age Descending");
+        List<Person> sortedByAgeDesc = people.stream()
                 .sorted(Comparator.comparing(Person::getAge).thenComparing(Person::getGender).reversed())
                 .collect(Collectors.toList());
 
-//    sorted.forEach(System.out::println);
+        sortedByAgeDesc.forEach(System.out::println);
+
+        System.out.println("\nSorting by Age Ascending");
+        List<Person> sortedByAgeAsc = people.stream()
+                .sorted(Comparator.comparing(Person::getAge).thenComparing(Person::getGender))
+                .collect(Collectors.toList());
+
+        sortedByAgeAsc.forEach(System.out::println);
+
+        System.out.println("\nSorting by Name Ascending");
+        List<Person> sortedByNameDesc = people.stream()
+                .sorted(Comparator.comparing(Person::getName))
+                .collect(Collectors.toList());
+
+        sortedByNameDesc.forEach(System.out::println);
+
+        System.out.println("\nSorting by Name Descending");
+        List<Person> sortedByNameAsc = people.stream()
+                .sorted(Comparator.comparing(Person::getName).reversed())
+                .collect(Collectors.toList());
+
+        sortedByNameAsc.forEach(System.out::println);
 
         // All match
         boolean allMatch = people.stream()
