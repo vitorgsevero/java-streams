@@ -80,35 +80,38 @@ public class Main {
         System.out.println(allMatchNameStartsWithLetterA);
 
         // ANY MATCH
+        System.out.println("\nAny Match person at person data collection should have at least one person with an age greater than 119 years to this returns true");
         boolean anyMatch = people.stream()
-                .anyMatch(person -> person.getAge() > 121);
+                .anyMatch(person -> person.getAge() > 119); //At least one person should have an age greater than 119 years to this returns true
+        System.out.println(anyMatch);
 
-//    System.out.println(anyMatch);
-        // None match
+
+        // NONE MATCH
+        System.out.println("\nNone Match will ensure that there's no one in this data collection with the name equal to 'Vítor' and the return will be true");
         boolean noneMatch = people.stream()
-                .noneMatch(person -> person.getName().equals("Antonio"));
-
-//    System.out.println(noneMatch);
+                .noneMatch(person -> person.getName().equals("Vítor"));
+        System.out.println(noneMatch);
 
         // Max
+        System.out.println("\nMax in this case will return the person with the greatest age");
         people.stream()
-                .max(Comparator.comparing(Person::getAge));
-//        .ifPresent(System.out::println);
+                .max(Comparator.comparing(Person::getAge))
+                .ifPresent(System.out::println);
 
         // Min
+        System.out.println("\nMin in this case will return the person with the lowest age");
         people.stream()
-                .min(Comparator.comparing(Person::getAge));
-//        .ifPresent(System.out::println);
+                .min(Comparator.comparing(Person::getAge))
+                .ifPresent(System.out::println);
 
         // Group
         Map<Gender, List<Person>> groupByGender = people.stream()
                 .collect(Collectors.groupingBy(Person::getGender));
 
-//    groupByGender.forEach((gender, people1) -> {
-//      System.out.println(gender);
-//      people1.forEach(System.out::println);
-//      System.out.println();
-//    });
+        groupByGender.forEach((gender, people1) -> {
+            System.out.println("\n" + gender);
+            people1.forEach(System.out::println);
+        });
 
         Optional<String> oldestFemaleAge = people.stream()
                 .filter(person -> person.getGender().equals(Gender.FEMALE))
