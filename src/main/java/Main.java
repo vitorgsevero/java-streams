@@ -125,8 +125,15 @@ public class Main {
                 .reduce((n1, n2) -> n1 * n2);
         System.out.println(reduce2);
 
-
-
+        // Reduce - concat
+        String s = "Reduce with concat";
+        String s2 = " - Reduce with concat";
+        List<String> listStr = List.of(s, s2);
+        Optional<String> concat = listStr
+                .stream()
+                .reduce(String::concat);
+        System.out.println(concat);
+        
     }
 
     private static List<Person> getPeople() {
