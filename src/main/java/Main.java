@@ -1,8 +1,4 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -11,14 +7,12 @@ public class Main {
 
         List<Person> people = getPeople();
 
-        // Imperative approach ❌
+        // IMPERATIVE APPROACH ❌
 
         System.out.println("\nImperative approach\n");
-
         List<Person> females = new ArrayList<>();
 
         for (Person person : people) {
-
             if (person.getGender().equals(Gender.FEMALE)) {
                 females.add(person);
             }
@@ -26,7 +20,7 @@ public class Main {
 
         females.forEach(System.out::println);
 
-        // Declarative approach ✅
+        // DECLARATIVE APPROACH ✅
 
         System.out.println("\nDeclarative approach");
 
@@ -119,6 +113,20 @@ public class Main {
                 .max(Comparator.comparing(Person::getAge))
                 .map(Person::getName);
         oldestFemaleAge.ifPresent(System.out::println);
+
+        // Reduce -> get all Stream elements and transform and just one thing
+        List<Integer> list = Arrays.asList(1,2,3,4,5,0);
+        final Optional<Integer> reduce = list.stream()
+                .reduce(Integer::sum);
+        System.out.println(reduce);
+
+        List<Integer> list2 = Arrays.asList(1,2,3,4,5,1);
+        final Optional<Integer> reduce2 = list2.stream()
+                .reduce((n1, n2) -> n1 * n2);
+        System.out.println(reduce2);
+
+
+
     }
 
     private static List<Person> getPeople() {
