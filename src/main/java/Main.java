@@ -141,6 +141,18 @@ public class Main {
                 .collect(Collectors.toSet());
         System.out.println(collect);
 
+        // Collect - joining strings
+        String stringJoined = collectList.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(","));
+        System.out.println(stringJoined);
+
+        // Collect - creating a new collection using a stream filtering data
+        final List<Person> collect1 = people.stream()
+                .filter(oldPerson -> oldPerson.getAge()> 100)
+                .collect(Collectors.toList());
+        System.out.println(collect1);
+
     }
 
     private static List<Person> getPeople() {
