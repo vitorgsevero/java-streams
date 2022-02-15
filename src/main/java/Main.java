@@ -133,7 +133,14 @@ public class Main {
                 .stream()
                 .reduce(String::concat);
         System.out.println(concat);
-        
+
+        // Collect - always when you want to save the stream result which is mutable, you should use collect
+        List<Integer> collectList = Arrays.asList(1,2,3,4,5,6);
+        final Set<Integer> collect = collectList.stream()
+                .filter((n) -> n % 2 == 0)
+                .collect(Collectors.toSet());
+        System.out.println(collect);
+
     }
 
     private static List<Person> getPeople() {
